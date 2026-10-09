@@ -1,9 +1,10 @@
+import createMDX from "@next/mdx";
+import remarkGfm from "remark-gfm";
 import type { NextConfig } from "next";
 
 const nextConfig: NextConfig = {
-  /* config options here */
-  cacheComponents: true,
-  partialPrefetching: true,
+  // Allow .mdx files to be imported as modules.
+  pageExtensions: ["ts", "tsx", "md", "mdx"],
   turbopack: {
     rules: {
       "*.css": {
@@ -14,4 +15,12 @@ const nextConfig: NextConfig = {
   },
 };
 
-export default nextConfig;
+const withMDX = createMDX({
+  // Turbopack requires remark/rehype plugins to be passed as strings.
+  options: {
+    remarkPlugins: ["remark-gfm"],
+    rehypePlugins: [],
+  },
+});
+
+export default withMDX(nextConfig);

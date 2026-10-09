@@ -1,26 +1,269 @@
 @import "tailwindcss";
 
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
+/* ------------------------------------------------------------------ *
+ * Design tokens — extracted from shallowfordds.com
+ * See DESIGN-FINDINGS.md for the full audit and rationale.
+ * ------------------------------------------------------------------ */
+
+@theme {
+  /* Brand reds (primary CTA ramp) */
+  --color-brand: #ff2a13;
+  --color-brand-hover: #ef2201;
+  --color-brand-border: #ac1100;
+  --color-brand-shadow: #a71000;
+  --color-brand-deep: #600900;
+
+  /* Ink */
+  --color-ink: #272727;
+  --color-body: #000000;
+  --color-nav: #1a1a1a;
+  --color-muted: #6a6a6a;
+
+  /* Accents */
+  --color-navy: #09263d;
+  --color-teal: #1a3637;
+  --color-link: #289eff;
+
+  /* Neutrals */
+  --color-surface: #f1f1f1;
+  --color-line: #dddddd;
+  --color-placeholder: #cccccc;
+
+  /* Type — font variables resolved in app/layout.tsx via next/font */
+  --font-display: var(--font-archivo), "Hind Guntur", ui-sans-serif, sans-serif;
+  --font-body: var(--font-hind-guntur), ui-sans-serif, sans-serif;
+  --font-decor: var(--font-shippori), ui-serif, Georgia, serif;
+
+  /* Shape */
+  --radius-btn: 0.25em;
+  --shadow-btn: 0 0.25em 0 0 #a71000, 0 4px 9px rgba(0, 0, 0, 0.75);
 }
 
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
-}
+@layer base {
+  html {
+    scroll-behavior: smooth;
+  }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
+  body {
+    background-color: #ffffff;
+    color: var(--color-body);
+    font-family: var(--font-body);
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 1.6;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    font-family: var(--font-display);
+    font-weight: 700;
+    letter-spacing: -0.035em;
+    color: var(--color-ink);
+    line-height: 1.15;
+  }
+
+  a {
+    color: var(--color-body);
+    text-decoration: none;
+  }
+
+  /* Focus visibility for keyboard users */
+  a:focus-visible,
+  button:focus-visible {
+    outline: 2px solid var(--color-brand);
+    outline-offset: 2px;
   }
 }
 
-body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+/* ------------------------------------------------------------------ *
+ * Components
+ * ------------------------------------------------------------------ */
+
+@layer components {
+  /* Solid primary CTA — red fill, hard offset shadow */
+  .btn-solid {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5em;
+    border: 3px solid var(--color-brand-border);
+    border-radius: var(--radius-btn);
+    background-color: var(--color-brand);
+    color: #ffffff;
+    padding: 0.85em 1.6em;
+    font-size: 1em;
+    line-height: 1;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    text-shadow: 0 0.075em 0.075em rgba(0, 0, 0, 0.5);
+    box-shadow: var(--shadow-btn);
+    transition: background-color 200ms ease, border-color 200ms ease,
+      transform 200ms ease;
+  }
+
+  .btn-solid:hover {
+    background-color: var(--color-brand-hover);
+    border-color: var(--color-brand-deep);
+  }
+
+  .btn-solid:active {
+    transform: translateY(1px);
+  }
+
+  /* Outline CTA — transparent, inverts to filled on hover */
+  .btn-outline {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5em;
+    border: 3px solid currentColor;
+    border-radius: var(--radius-btn);
+    background-color: transparent;
+    padding: 0.75em 1.5em;
+    font-size: 1em;
+    line-height: 1;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    transition: background-color 200ms ease, color 200ms ease,
+      border-color 200ms ease;
+  }
+
+  /* Decorative watermark — transparent fill + faint stroke */
+  .watermark {
+    font-family: var(--font-decor);
+    color: transparent;
+    -webkit-text-stroke: 1px rgba(39, 39, 39, 0.18);
+    line-height: 0.95;
+    pointer-events: none;
+    user-select: none;
+  }
+
+  /* Article prose styling for rendered MDX */
+  .prose-dental {
+    font-family: var(--font-body);
+    font-size: 1.0625rem;
+    color: var(--color-body);
+  }
+
+  .prose-dental > * + * {
+    margin-top: 1.4em;
+  }
+
+  .prose-dental h2 {
+    font-size: 1.75rem;
+    margin-top: 2.2em;
+    margin-bottom: 0.6em;
+  }
+
+  .prose-dental h3 {
+    font-size: 1.35rem;
+    margin-top: 1.8em;
+    margin-bottom: 0.5em;
+  }
+
+  .prose-dental a {
+    color: var(--color-link);
+    text-decoration: underline;
+    text-underline-offset: 2px;
+  }
+
+  .prose-dental ul,
+  .prose-dental ol {
+    padding-left: 1.4em;
+  }
+
+  .prose-dental ul {
+    list-style: disc;
+  }
+
+  .prose-dental ol {
+    list-style: decimal;
+  }
+
+  .prose-dental li + li {
+    margin-top: 0.4em;
+  }
+
+  .prose-dental blockquote {
+    border-left: 3px solid var(--color-teal);
+    padding-left: 1.1em;
+    color: var(--color-ink);
+    font-style: italic;
+  }
+
+  .prose-dental table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 0.95rem;
+  }
+
+  .prose-dental th,
+  .prose-dental td {
+    border-bottom: 1px solid var(--color-line);
+    padding: 0.6em 0.8em;
+    text-align: left;
+  }
+
+  .prose-dental th {
+    font-family: var(--font-display);
+    color: var(--color-ink);
+  }
+}
+
+/* ------------------------------------------------------------------ *
+ * Motion — scroll-triggered entrance, respects reduced-motion
+ * ------------------------------------------------------------------ */
+
+@layer utilities {
+  .reveal {
+    opacity: 0;
+    transform: translateY(24px);
+    transition: opacity 600ms ease, transform 600ms ease;
+  }
+
+  .reveal.is-visible {
+    opacity: 1;
+    transform: none;
+  }
+
+  .reveal-left {
+    opacity: 0;
+    transform: translateX(-24px);
+    transition: opacity 600ms ease, transform 600ms ease;
+  }
+
+  .reveal-left.is-visible {
+    opacity: 1;
+    transform: none;
+  }
+
+  .reveal-right {
+    opacity: 0;
+    transform: translateX(24px);
+    transition: opacity 600ms ease, transform 600ms ease;
+  }
+
+  .reveal-right.is-visible {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+
+  .reveal,
+  .reveal-left,
+  .reveal-right {
+    opacity: 1;
+    transform: none;
+    transition: none;
+  }
 }
