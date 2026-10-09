@@ -1,0 +1,39 @@
+name: Content + Build Checks
+
+on:
+  pull_request:
+    branches: [main]
+  push:
+    branches: [main]
+
+jobs:
+  verify:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 24
+          cache: npm
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Validate content (E-E-A-T gate)
+        run: npm run validate
+
+      - name: Lint
+        run: npm run lint
+
+      - name: Typecheck
+        run: npm run typecheck
+
+      - name: Build
+        run: npm run build
+        env:
+          NEXT_PUBLIC_SITE_URL: https://example.com
+
+  # Editorial reminder: a clinical reviewer must sign off before merge.
+  # Enforced by `npm run validate` above — a post without a named,
+  # credentialed reviewer and at least one source fails the build.

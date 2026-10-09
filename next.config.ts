@@ -1,11 +1,12 @@
 import createMDX from "@next/mdx";
-import remarkGfm from "remark-gfm";
 import type { NextConfig } from "next";
 
 const nextConfig: NextConfig = {
   // Allow .mdx files to be imported as modules.
   pageExtensions: ["ts", "tsx", "md", "mdx"],
   turbopack: {
+    // Pin the workspace root so lockfiles outside the repo are ignored.
+    root: import.meta.dirname,
     rules: {
       "*.css": {
         loaders: ["@tailwindcss/turbopack"],
