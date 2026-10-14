@@ -59,7 +59,7 @@ export default async function CategoryPage({ params }: Props) {
           No articles published in this category yet.
         </p>
       ) : (
-        <div className="mt-14 grid gap-x-6 gap-y-14 md:grid-cols-2 lg:grid-cols-3">
+        <div className="mt-14 grid gap-x-6 gap-y-14 lg:grid-cols-3">
           {posts.map((post, i) => (
             <Reveal key={post.slug} delay={(i % 3) * 90}>
               <BlogCard post={post} />

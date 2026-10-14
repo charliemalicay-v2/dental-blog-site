@@ -1,0 +1,155 @@
+[
+  {
+    "src": "2024/11/quartage-webfont.woff",
+    "dest": "fonts/quartage-webfont.woff",
+    "url": "https://shallowfordds.com/wp-content/uploads/2024/11/quartage-webfont.woff?orig=1",
+    "bytes": 23904,
+    "format": "WOFF",
+    "formatOk": true,
+    "sha256": "898b7940bbc3a94d36e37fccc1323a8f3076b72a11b2d05ae8627bbc0ccff73a"
+  },
+  {
+    "src": "2025/05/roswell-dentist-shallowford-dental-studio-logo.svg",
+    "dest": "images/logo.svg",
+    "url": "https://shallowfordds.com/wp-content/uploads/2025/05/roswell-dentist-shallowford-dental-studio-logo.svg?orig=1",
+    "bytes": 92051,
+    "format": "SVG",
+    "formatOk": true,
+    "sha256": "ca5f30b1be439e3145100a1f6cbb4b573844b31d6384c5659f81a5363a65965a"
+  },
+  {
+    "src": "2025/05/shallowford-dental-studio-dentist-roswell.png",
+    "dest": "images/logo.png",
+    "url": "https://shallowfordds.com/wp-content/uploads/2025/05/shallowford-dental-studio-dentist-roswell.png?orig=1",
+    "bytes": 44192,
+    "format": "PNG",
+    "formatOk": true,
+    "sha256": "d928589d45e119109e0c46717f3fcbc6fbf40f4de7c69c3676b620813e82902f"
+  },
+  {
+    "src": "2024/11/img-favicon.png",
+    "dest": "images/favicon.png",
+    "url": "https://shallowfordds.com/wp-content/uploads/2024/11/img-favicon.png?orig=1",
+    "bytes": 9264,
+    "format": "PNG",
+    "formatOk": true,
+    "sha256": "8364754f3eeb71df9daeb23c23cf4a22e21655a9f14814f9a82e432a3f0be458"
+  },
+  {
+    "src": "2024/11/img-favicon-100x100.png",
+    "dest": "images/favicon-100x100.png",
+    "url": "https://shallowfordds.com/wp-content/uploads/2024/11/img-favicon-100x100.png?orig=1",
+    "bytes": 3140,
+    "format": "PNG",
+    "formatOk": true,
+    "sha256": "b4068ea88021070b6853461ac2bc0572c83ddfafc4be8802e69a6891deea0f3c"
+  },
+  {
+    "src": "2024/11/img-Shallowford-Dental-Studio-1200x675-1.png",
+    "dest": "images/og-default.png",
+    "url": "https://shallowfordds.com/wp-content/uploads/2024/11/img-Shallowford-Dental-Studio-1200x675-1.png?orig=1",
+    "bytes": 29230,
+    "format": "PNG",
+    "formatOk": true,
+    "sha256": "b77421629a8c9e80ae8913a1be8e0aaf1e39404e599b733777fdc471189ded91"
+  },
+  {
+    "src": "2024/11/img-logo-invisalign.png",
+    "dest": "images/logo-invisalign.png",
+    "url": "https://shallowfordds.com/wp-content/uploads/2024/11/img-logo-invisalign.png?orig=1",
+    "bytes": 43827,
+    "format": "PNG",
+    "formatOk": true,
+    "sha256": "06dfe43ff4638bb6309cc3fdbe765c386884dca99fc0612e90291f7eba205b69"
+  },
+  {
+    "src": "2025/02/img-home-banner.jpg",
+    "dest": "images/hero.jpg",
+    "url": "https://shallowfordds.com/wp-content/uploads/2025/02/img-home-banner.jpg?orig=1",
+    "bytes": 1270364,
+    "format": "JPEG",
+    "formatOk": true,
+    "sha256": "ac0622de085de5708d22553d757c4f033f4b3ba26c5b64af59234d177623d01e"
+  },
+  {
+    "src": "2025/02/img-home-banner-2.jpg",
+    "dest": "images/hero-2.jpg",
+    "url": "https://shallowfordds.com/wp-content/uploads/2025/02/img-home-banner-2.jpg?orig=1",
+    "bytes": 1542466,
+    "format": "JPEG",
+    "formatOk": true,
+    "sha256": "008c2e158347d285797ce45a9eff19e3aab8e5975c7d43ce543f9690cb0ebddc"
+  },
+  {
+    "src": "2025/05/shallowfordds-dental-office-roswell.jpg",
+    "dest": "images/office.jpg",
+    "url": "https://shallowfordds.com/wp-content/uploads/2025/05/shallowfordds-dental-office-roswell.jpg?orig=1",
+    "bytes": 366561,
+    "format": "JPEG",
+    "formatOk": true,
+    "sha256": "2de28f75e1e7167963ee4a716a34aff27d132cc523c5fa7e2016b21cc0df7574"
+  },
+  {
+    "src": "2025/05/dr-lucy-sedrakyan-dmd-roswell-dentist.jpg",
+    "dest": "images/dr-lucy-sedrakyan.jpg",
+    "url": "https://shallowfordds.com/wp-content/uploads/2025/05/dr-lucy-sedrakyan-dmd-roswell-dentist.jpg?orig=1",
+    "bytes": 198576,
+    "format": "JPEG",
+    "formatOk": true,
+    "sha256": "7c4459f37336726c7a39876fbb3bb5c881da0399b2a7f66ac80f9534d06e8bae"
+  },
+  {
+    "src": "2024/11/Dr.-Lusine-Sedrakyan.png",
+    "dest": "images/dr-lusine-sedrakyan.png",
+    "url": "https://shallowfordds.com/wp-content/uploads/2024/11/Dr.-Lusine-Sedrakyan.png?orig=1",
+    "bytes": 7126,
+    "format": "PNG",
+    "formatOk": true,
+    "sha256": "d92414695d3a78c42c8993e2341072e64184265e9e5786f13499954e371fc2b9"
+  },
+  {
+    "src": "2025/05/dental-implants-shallowford-dental-studio-of-roswell-ga.webp",
+    "dest": "images/service-implants.webp",
+    "url": "https://shallowfordds.com/wp-content/uploads/2025/05/dental-implants-shallowford-dental-studio-of-roswell-ga.webp?orig=1",
+    "bytes": 332490,
+    "format": "WEBP",
+    "formatOk": true,
+    "sha256": "46fcc0257e046790c1ba8d7109b91ce3b731f1b8556bf36c3ad3275686baf9ad"
+  },
+  {
+    "src": "2025/05/invisalign-shallowford-dental-studio-of-roswell.webp",
+    "dest": "images/service-invisalign.webp",
+    "url": "https://shallowfordds.com/wp-content/uploads/2025/05/invisalign-shallowford-dental-studio-of-roswell.webp?orig=1",
+    "bytes": 48272,
+    "format": "WEBP",
+    "formatOk": true,
+    "sha256": "eb138fb7e31eb6672e7d99579f9e6f8c8252ee32d791a716bb105e56272ca9f6"
+  },
+  {
+    "src": "2025/05/preventive-dental-care-roswell-ga.jpg",
+    "dest": "images/service-preventive.jpg",
+    "url": "https://shallowfordds.com/wp-content/uploads/2025/05/preventive-dental-care-roswell-ga.jpg?orig=1",
+    "bytes": 68036,
+    "format": "JPEG",
+    "formatOk": true,
+    "sha256": "0164329bb05f0a7b0f0dcbb05c421ac385cec20ad06082f72a009cb223db717c"
+  },
+  {
+    "src": "2024/10/img-g-star.png",
+    "dest": "images/g-star.png",
+    "url": "https://shallowfordds.com/wp-content/uploads/2024/10/img-g-star.png?orig=1",
+    "bytes": 1380,
+    "format": "PNG",
+    "formatOk": true,
+    "sha256": "8fda3ee4586a2a3db1e032f1cc5faca98e025811268a65b8a9829f25e86977fb"
+  },
+  {
+    "src": "2024/11/Vector-5.svg",
+    "dest": "images/decor-vector-5.svg",
+    "url": "https://shallowfordds.com/wp-content/uploads/2024/11/Vector-5.svg?orig=1",
+    "bytes": 466,
+    "format": "SVG",
+    "formatOk": true,
+    "sha256": "869ba4a6fa670ca04ac38107019b8b3dbcd022479a4d17531fbe08ea3a304e08"
+  }
+]

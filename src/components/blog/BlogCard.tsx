@@ -48,7 +48,7 @@ export function BlogCard({ post }: { post: PostFrontmatter }) {
         </Link>
       )}
 
-      <h3 className="mt-2 text-lg leading-snug md:text-xl">
+      <h3 className="mt-2 text-lg leading-[1.2] capitalize md:text-xl">
         <Link
           href={`/blog/${post.slug}`}
           className="transition-colors group-hover:text-link"
@@ -61,7 +61,7 @@ export function BlogCard({ post }: { post: PostFrontmatter }) {
         {post.description}
       </p>
 
-      <div className="mt-4 flex flex-wrap items-center gap-x-3 gap-y-1 text-[13px] font-semibold uppercase tracking-[0.12em] text-ink">
+      <div className="mt-4 flex flex-wrap items-center gap-x-3 gap-y-1 text-base font-semibold uppercase tracking-[0.12em] text-ink">
         {author && <span>{author.name}</span>}
         <span aria-hidden className="text-placeholder">
           /

@@ -2,7 +2,7 @@
 
 import { useEffect, useRef, type ReactNode } from "react";
 
-type Variant = "up" | "left" | "right";
+type Variant = "up" | "left" | "right" | "zoom";
 
 type Props = {
   children: ReactNode;
@@ -17,6 +17,7 @@ const CLASS: Record<Variant, string> = {
   up: "reveal",
   left: "reveal-left",
   right: "reveal-right",
+  zoom: "zoom-in",
 };
 
 /**

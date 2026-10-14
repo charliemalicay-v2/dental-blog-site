@@ -3,10 +3,33 @@
 Source: `https://shallowfordds.com/` (WordPress / Pro Theme "Integrity" stack)
 Extracted from the live site's customizer CSS (`cs-inline-css`, 67,282 chars) and markup.
 Date extracted: 2026-10-09
+Re-verified: 2026-10-14 — **no drift**. `cs-inline-css` is byte-identical (67,282 chars) and every
+documented brand token is still present. See "Re-verification" below.
 
 > **Usage note:** Palette, typography, spacing, and component styling are replicated here as
-> design tokens. The site's images, logo, written copy, and the commercial `quartage` webfont
-> binary are **not** reproduced.
+> design tokens. Brand assets (logo, imagery) and the commercial `quartage` webfont are
+> reproduced in this project at the owner's direction — each is recorded with source URL,
+> retrieval date, and checksum in [`ASSET-PROVENANCE.md`](./ASSET-PROVENANCE.md).
+
+---
+
+## Re-verification — 2026-10-14
+
+Re-ran the extraction with `scripts/audit-design.mjs` against a fresh capture of the homepage.
+
+| Check | Result |
+|-------|--------|
+| `cs-inline-css` length | 67,282 chars — **byte-identical** to the original extraction |
+| Brand hexes | all present (live uses `#ccc` / `#f1f1f100` shorthand where the doc wrote `#cccccc` / `#f1f1f1`) |
+| Breakpoints | match — live media widths: `479, 766, 767, 978, 978.98, 1199, 1200` |
+| Fonts | match — `quartage`, `Hind Guntur`, `Shippori Antique` |
+
+**No corrections to the tokens above were required.** Two clarifications the audit added:
+
+1. **Motion is JS-driven, not CSS** (see §6). `cs-inline-css` contains a single keyframe
+   (`glowing`); the entrance animations come from the Cornerstone/Pro animation engine.
+2. **The brand logo is supplied as an SVG** that wraps a raster PNG data-URI, not true vector
+   artwork (see §8).
 
 ---
 
@@ -38,10 +61,15 @@ h1,h2,h3,h4,h5,h6 { letter-spacing: -0.035em; }
 - Blog card title (featured): **38px**
 - Watermark text: **150px** desktop → **100px** mobile, Shippori Antique, transparent fill
 
-### Quartage substitution (recommended)
-Quartage is a commercial typeface self-hosted by the site. Use a free lookalike:
-- **Archivo** (primary recommendation — geometric grotesque, holds heavy weights at `-0.035em`)
-- Alternates: Familjen Grotesk, Bricolage Grotesque, Schibsted Grotesk
+### Quartage — now self-hosted
+> **Update 2026-10-14:** the real Quartage webfont is self-hosted at
+> `public/fonts/quartage-webfont.woff` and loaded via `next/font/local`
+> (`--font-quartage`) in `src/app/layout.tsx`. The earlier Archivo stand-in has been removed.
+> See [`ASSET-PROVENANCE.md`](./ASSET-PROVENANCE.md) §3 for the licensing note — **confirm the
+> web licence covers this domain.**
+
+Quartage ships a **single weight**, so headings reach bold via `font-weight: bolder`
+(i.e. synthetic emboldening) — exactly what the source does.
 
 ---
 
@@ -239,11 +267,36 @@ Blog collapses to single column at **978px**.
 ---
 
 ## 6. Motion
+
+> ⚠️ **Audit correction (2026-10-14):** these effects are produced by the Pro/Cornerstone
+> **JavaScript animation engine**, not CSS. `cs-inline-css` contains exactly one keyframe
+> (`glowing`). Reproducing this section means re-implementing the *effect*, not copying a
+> `@keyframes` block.
+
 Scroll-triggered entrance animations (fire-once), all paired with a `rollOut` exit:
-- `slideInUp` — headings, body text, buttons
-- `slideInLeft` / `slideInRight` — images, cards
-- `zoomIn` — decorative elements
-- `pulse` — review/rating widget
+
+| Primitive | Applied by the source to | Count on homepage |
+|-----------|--------------------------|-------------------|
+| `slideInUp` | headings, body text, buttons | 17 |
+| `slideInLeft` / `slideInRight` | images, cards | — |
+| `zoomIn` | standalone `x-line` rule + `x-text-headline` text blocks (`animationEnter: zoomIn`) | 4 |
+| `pulse` | the Google-review CTA image and the EmbedSocial widget, via `animationAlt`; also one scroll **exit** effect | 3 |
+
+#### Implementation status in this repo
+
+The motion system is `src/components/motion/Reveal.tsx` plus the `.reveal*` utilities in
+`globals.css`. Verified by computed style in Chromium.
+
+| Source primitive | Status here | Wired at |
+|------------------|-------------|----------|
+| `slideInUp` | `Reveal` default — `.reveal` | cards, hero, featured post, section blocks |
+| `slideInLeft` / `slideInRight` | `variant="left"` / `variant="right"` — `.reveal-left` / `.reveal-right` | home hero image |
+| `zoomIn` | `variant="zoom"` — `.zoom-in` | blog index headline block (accent rule + eyebrow + `h1`) — the source's rule+headline pattern |
+| `pulse` | **not implemented** | The source applies it only to a Google-review CTA and an EmbedSocial widget; neither component exists on this hub, so the utility would be dead code. Re-add if a review CTA is ever built. |
+
+All implemented variants collapse to their final state under `prefers-reduced-motion: reduce`.
+The paired `rollOut` **exit** animations are deliberately not reproduced — every reveal here is
+`fire-once` and persists, which is the dominant source behaviour.
 
 ---
 
@@ -275,7 +328,7 @@ Scroll-triggered entrance animations (fire-once), all paired with a `rollOut` ex
   --color-placeholder:  #cccccc;
 
   /* type */
-  --font-display: var(--font-archivo), "Hind Guntur", sans-serif;
+  --font-display: var(--font-quartage), "Hind Guntur", sans-serif;
   --font-body:    var(--font-hind-guntur), sans-serif;
   --font-decor:   var(--font-shippori-antique), serif;
 
@@ -284,3 +337,45 @@ Scroll-triggered entrance animations (fire-once), all paired with a `rollOut` ex
   --shadow-btn:   0 0.25em 0 0 #a71000, 0 4px 9px rgba(0,0,0,0.75);
 }
 ```
+
+---
+
+## 8. Asset inventory (from re-verification)
+
+Brand assets referenced by the live homepage. **All of the below are downloaded and committed**
+to `public/` (plus the favicon set in `src/app/`), with source URL, byte size, format and
+SHA-256 recorded in [`ASSET-PROVENANCE.md`](./ASSET-PROVENANCE.md) and
+`scripts/brand-assets-manifest.json`. Re-fetch at any time with `scripts/fetch-brand-assets.mjs`.
+
+### Identity
+| Asset | URL path | Notes |
+|-------|----------|-------|
+| Logo (current) | `/wp-content/uploads/2025/05/roswell-dentist-shallowford-dental-studio-logo.svg` | 759×161 — **SVG wrapping an embedded raster PNG**, not true vector |
+| Logo (older) | `/wp-content/uploads/2024/11/img-logo-1.svg` | — |
+| Logo (PNG) | `/wp-content/uploads/2025/05/shallowford-dental-studio-dentist-roswell.png` | — |
+| Favicon | `/wp-content/uploads/2024/11/img-favicon.png` · `img-favicon-100x100.png` | — |
+| OG card | `/wp-content/uploads/2024/11/img-Shallowford-Dental-Studio-1200x675-1.png` | 1200×675 |
+
+### Photography
+| Asset | URL path |
+|-------|----------|
+| Home hero | `/wp-content/uploads/2025/02/img-home-banner.jpg` · `img-home-banner-2.jpg` |
+| Office | `/wp-content/uploads/2025/05/shallowfordds-dental-office-roswell.jpg` |
+| Practitioner | `/wp-content/uploads/2025/05/dr-lucy-sedrakyan-dmd-roswell-dentist.jpg` · `/2024/11/Dr.-Lusine-Sedrakyan.png` |
+| Service — implants | `/wp-content/uploads/2025/05/dental-implants-shallowford-dental-studio-of-roswell-ga.webp` |
+| Service — Invisalign | `/wp-content/uploads/2025/05/invisalign-shallowford-dental-studio-of-roswell.webp` |
+| Service — preventive | `/wp-content/uploads/2025/05/preventive-dental-care-roswell-ga.jpg` |
+| Invisalign logo | `/wp-content/uploads/2024/11/img-logo-invisalign.png` |
+
+### Typography
+| Asset | URL path | Status |
+|-------|----------|--------|
+| Quartage (commercial) | `/wp-content/uploads/2024/11/quartage-webfont.woff` | **Self-hosted** at `public/fonts/quartage-webfont.woff`, loaded via `next/font/local` in `src/app/layout.tsx` |
+| FontAwesome Pro (5 faces) | `/wp-content/themes/pro/cornerstone/assets/fonts/fa-*.woff2` | **Not copied** — a separate commercial licence, and no glyphs from it are used on this hub |
+
+> Note: the practitioner is named **Dr. Lucy Sedrakyan** in `src/lib/constants.ts`, and all
+> content frontmatter agrees. The source ships **two** spellings — a portrait
+> (`dr-lucy-sedrakyan-dmd-roswell-dentist.jpg`) and a 434×84 signature/wordmark
+> (`Dr.-Lusine-Sedrakyan.png`) — so *Lusine* is likely the given name and *Lucy* the
+> professional form. Confirm the preferred spelling with the practice before treating
+> author/attribution pages as final. See [`ASSET-PROVENANCE.md`](./ASSET-PROVENANCE.md) §4.

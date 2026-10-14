@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
-import { Archivo, Hind_Guntur, Shippori_Antique } from "next/font/google";
+import localFont from "next/font/local";
+import { Hind_Guntur, Shippori_Antique } from "next/font/google";
 import { Footer } from "@/components/layout/Footer";
 import { Header } from "@/components/layout/Header";
 import { JsonLd } from "@/components/seo/JsonLd";
@@ -8,13 +9,15 @@ import "./globals.css";
 
 /**
  * Font mapping — see DESIGN-FINDINGS.md § Typography.
- * Archivo substitutes for the source site's commercial Quartage; the body
- * and watermark faces match exactly.
+ * Quartage is the source site's commercial display face, self-hosted here at
+ * the owner's direction (see ASSET-PROVENANCE.md). It ships a single weight, so
+ * headings apply `font-weight: bolder` and the browser synthesises bold — which
+ * is exactly what the source does. Body and watermark faces are Google fonts
+ * and already match exactly.
  */
-const archivo = Archivo({
-  variable: "--font-archivo",
-  subsets: ["latin"],
-  weight: ["400", "500", "600", "700", "800"],
+const quartage = localFont({
+  src: "../../public/fonts/quartage-webfont.woff",
+  variable: "--font-quartage",
   display: "swap",
 });
 
@@ -63,11 +66,20 @@ export const metadata: Metadata = {
     url: SITE.url,
     title: SITE.title,
     description: SITE.description,
+    images: [
+      {
+        url: "/images/og-default.png",
+        width: 1200,
+        height: 675,
+        alt: SITE.title,
+      },
+    ],
   },
   twitter: {
     card: "summary_large_image",
     title: SITE.title,
     description: SITE.description,
+    images: ["/images/og-default.png"],
   },
   robots: { index: true, follow: true },
 };
@@ -76,7 +88,7 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
   return (
     <html
       lang="en"
-      className={`${archivo.variable} ${hindGuntur.variable} ${shippori.variable} h-full scroll-smooth`}
+      className={`${quartage.variable} ${hindGuntur.variable} ${shippori.variable} h-full scroll-smooth`}
     >
       <body className="flex min-h-full flex-col">
         <JsonLd data={orgJsonLd} />

@@ -131,7 +131,7 @@ export default function HomePage() {
       {recent.length > 0 && (
         <section className="mx-auto w-full max-w-6xl px-5 py-14 md:py-20">
           <h2 className="text-2xl md:text-3xl">More from the library</h2>
-          <div className="mt-10 grid gap-x-6 gap-y-14 md:grid-cols-2 lg:grid-cols-3">
+          <div className="mt-10 grid gap-x-6 gap-y-14 lg:grid-cols-3">
             {recent.map((post, i) => (
               <Reveal key={post.slug} delay={(i % 3) * 90}>
                 <BlogCard post={post} />

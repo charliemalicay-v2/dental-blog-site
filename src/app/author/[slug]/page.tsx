@@ -119,7 +119,7 @@ export default async function AuthorPage({ params }: Props) {
         {posts.length === 0 ? (
           <p className="mt-8 text-muted">No articles published yet.</p>
         ) : (
-          <div className="mt-10 grid gap-x-6 gap-y-14 md:grid-cols-2 lg:grid-cols-3">
+          <div className="mt-10 grid gap-x-6 gap-y-14 lg:grid-cols-3">
             {posts.map((post, i) => (
               <Reveal key={post.slug} delay={(i % 3) * 90}>
                 <BlogCard post={post} />

@@ -49,11 +49,16 @@ article should:
 | Hosting | **Vercel** | Preview deploys per PR, edge CDN |
 
 ### Fonts mapping (from `DESIGN-FINDINGS.md`)
-- `--font-display` → **Archivo** (free stand-in for the commercial Quartage)
+- `--font-display` → **Quartage** (self-hosted at `public/fonts/quartage-webfont.woff`)
 - `--font-body` → **Hind Guntur** (exact match)
 - `--font-decor` → **Shippori Antique** (exact match, watermark layer)
 
-> ⚠️ Do **not** copy the site's `quartage-webfont.woff`. It is a licensed commercial font.
+> **Superseded 2026-10-14.** This section originally forbade copying the commercial
+> `quartage-webfont.woff` and substituted Archivo. The site owner directed that the real
+> brand assets be copied, so Quartage is now self-hosted via `next/font/local`. Note that
+> Quartage is licensed commercial software — see
+> [`ASSET-PROVENANCE.md`](./ASSET-PROVENANCE.md) §3 for the outstanding check (the web
+> licence must cover this domain).
 
 ---
 
@@ -356,7 +361,7 @@ Vercel preview working
 | Risk | Mitigation |
 |------|------------|
 | **YMYL quality** — inaccurate dental advice harms patients + rankings | Mandatory licensed-dentist review; citations; disclaimer on every post; no outcome promises |
-| **Attribution / licensing** — copying source assets | Original or licensed imagery only. No hotlinking. **Never** copy the `quartage` webfont binary |
+| **Attribution / licensing** — copying source assets | Superseded 2026-10-14: brand assets **are** copied at the owner's direction (no hotlinking) and each is recorded in `ASSET-PROVENANCE.md`. Outstanding: confirm the Quartage web licence covers this domain, and that the photographer's licence permits reuse |
 | **Conflicts with practice site** — duplicate/cannibalizing rankings | Hub targets informational queries; practice site owns transactional. Distinct content, cross-linked |
 | **Unreviewed content going live** | `validate-content.ts` CI gate fails any PR missing `clinicalReview` or `sources` |
 | **Stale clinical guidance** | 12-month review cadence; visible `updatedAt`; flagged sweep in Phase 4 |

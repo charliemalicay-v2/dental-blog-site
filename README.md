@@ -16,14 +16,16 @@ reviewed before publishing.
 | Framework | Next.js 16 (App Router, TypeScript) |
 | Styling | Tailwind CSS v4 (`@theme` tokens) |
 | Content | MDX + `gray-matter` frontmatter |
-| Fonts | `next/font/google` — Archivo, Hind Guntur, Shippori Antique |
+| Fonts | `next/font/local` Quartage (self-hosted) + `next/font/google` Hind Guntur, Shippori Antique |
 | Hosting | Vercel |
 
 ## Documentation
 
 - [`DESIGN-FINDINGS.md`](./DESIGN-FINDINGS.md) — design tokens extracted from the
-  practice site (palette, typography, components, motion). The commercial
-  `quartage` webfont is **not** copied; Archivo is the free substitute.
+  practice site (palette, typography, components, motion), plus implementation status.
+- [`ASSET-PROVENANCE.md`](./ASSET-PROVENANCE.md) — every brand asset copied into this
+  repo (logo, imagery, the commercial `quartage` webfont) with source URL, retrieval
+  date, SHA-256 and licensing notes.
 - [`PLAN.md`](./PLAN.md) — positioning, IA, content model, YMYL/E-E-A-T pipeline,
   SEO strategy, and the phased roadmap.
 

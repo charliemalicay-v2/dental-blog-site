@@ -9,9 +9,14 @@ export function Footer() {
       <div className="mx-auto w-full max-w-6xl px-5 py-14">
         <div className="grid gap-10 md:grid-cols-3">
           <div>
-            <p className="font-display text-xl font-bold uppercase">
-              Shallowford <span className="text-brand">Dental</span> Resource
-            </p>
+            {/* eslint-disable-next-line @next/next/no-img-element */}
+            <img
+              src="/images/logo.svg"
+              alt={PRACTICE.name}
+              width={759}
+              height={161}
+              className="h-10 w-auto"
+            />
             <p className="mt-4 max-w-sm text-sm leading-relaxed text-white/70">
               Expert-reviewed dental guides for Roswell, GA and Cobb &amp;
               Fulton Counties. Published in connection with Shallowford Dental

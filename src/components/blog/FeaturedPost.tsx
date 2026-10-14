@@ -18,9 +18,9 @@ export function FeaturedPost({ post }: { post: PostFrontmatter }) {
   const date = new Date(post.publishedAt);
 
   return (
-    <article className="group border-t-[3px] border-teal pt-6 md:pt-8">
-      <div className="grid gap-6 md:grid-cols-[1.6fr_1fr] md:gap-8">
-        <div className="order-2 md:order-1">
+    <article className="group border-t-[3px] border-teal pt-6 lg:pt-8">
+      <div className="grid gap-6 lg:grid-cols-[2fr_1fr] lg:gap-8">
+        <div className="order-2 lg:order-1">
           {category && (
             <Link
               href={`/category/${category.slug}`}
@@ -43,7 +43,7 @@ export function FeaturedPost({ post }: { post: PostFrontmatter }) {
             {post.description}
           </p>
 
-          <div className="mt-5 flex flex-wrap items-center gap-3 text-[13px] font-semibold uppercase tracking-[0.12em] text-ink">
+          <div className="mt-5 flex flex-wrap items-center gap-3 text-base font-semibold uppercase tracking-[0.12em] text-ink">
             {author && <span>{author.name}</span>}
             <span aria-hidden className="text-placeholder">
               /
@@ -63,9 +63,9 @@ export function FeaturedPost({ post }: { post: PostFrontmatter }) {
           </Link>
         </div>
 
-        <div className="order-1 md:order-2">
+        <div className="order-1 lg:order-2">
           <Link href={`/blog/${post.slug}`} className="block" tabIndex={-1} aria-hidden="true">
-            <div className="relative w-full overflow-hidden bg-placeholder pb-[65%] md:pb-0 md:h-full md:min-h-[260px]">
+            <div className="relative w-full overflow-hidden bg-placeholder pb-[65%] lg:pb-0 lg:h-full lg:min-h-[260px]">
               {post.heroImage?.src ? (
                 // eslint-disable-next-line @next/next/no-img-element
                 <img

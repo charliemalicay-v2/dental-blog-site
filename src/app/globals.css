@@ -30,9 +30,16 @@
   --color-placeholder: #cccccc;
 
   /* Type — font variables resolved in app/layout.tsx via next/font */
-  --font-display: var(--font-archivo), "Hind Guntur", ui-sans-serif, sans-serif;
+  --font-display: var(--font-quartage), "Hind Guntur", ui-sans-serif, sans-serif;
   --font-body: var(--font-hind-guntur), ui-sans-serif, sans-serif;
   --font-decor: var(--font-shippori), ui-serif, Georgia, serif;
+
+  /* Breakpoints — source band starts, mobile-first "apply at ≥" (DESIGN-FINDINGS.md §5).
+     Names match the source's device bands: sm 480–766, md 767–978, lg 979–1199, xl ≥1200. */
+  --breakpoint-sm: 480px;
+  --breakpoint-md: 767px;
+  --breakpoint-lg: 979px;
+  --breakpoint-xl: 1200px;
 
   /* Shape */
   --radius-btn: 0.25em;
@@ -61,7 +68,7 @@
   h5,
   h6 {
     font-family: var(--font-display);
-    font-weight: 700;
+    font-weight: bolder;
     letter-spacing: -0.035em;
     color: var(--color-ink);
     line-height: 1.15;
@@ -99,6 +106,8 @@
     font-size: 1em;
     line-height: 1;
     letter-spacing: 0.1em;
+    /* Negative margin cancels the trailing letter-space (DESIGN-FINDINGS.md §3). */
+    margin-right: -0.1em;
     text-transform: uppercase;
     text-shadow: 0 0.075em 0.075em rgba(0, 0, 0, 0.5);
     box-shadow: var(--shadow-btn);
@@ -115,8 +124,11 @@
     transform: translateY(1px);
   }
 
-  /* Outline CTA — transparent, inverts to filled on hover */
+  /* Outline CTA — transparent, inverts to a filled button on hover (DESIGN-FINDINGS.md §3).
+     Override the hover pair per context via --btn-outline-hover-bg/-fg. */
   .btn-outline {
+    --btn-outline-hover-bg: #ffffff;
+    --btn-outline-hover-fg: #000000;
     display: inline-flex;
     align-items: center;
     justify-content: center;
@@ -128,9 +140,17 @@
     font-size: 1em;
     line-height: 1;
     letter-spacing: 0.1em;
+    /* Negative margin cancels the trailing letter-space (DESIGN-FINDINGS.md §3). */
+    margin-right: -0.1em;
     text-transform: uppercase;
     transition: background-color 200ms ease, color 200ms ease,
       border-color 200ms ease;
+  }
+
+  .btn-outline:hover {
+    background-color: var(--btn-outline-hover-bg);
+    color: var(--btn-outline-hover-fg);
+    border-color: var(--btn-outline-hover-bg);
   }
 
   /* Decorative watermark — transparent fill + faint stroke */
@@ -252,6 +272,19 @@
     opacity: 1;
     transform: none;
   }
+
+  /* zoomIn — standalone rule + headline blocks, matching the source's
+     `animationEnter: zoomIn` on `x-line` + `x-text-headline` (DESIGN-FINDINGS.md §6) */
+  .zoom-in {
+    opacity: 0;
+    transform: scale(0.92);
+    transition: opacity 600ms ease, transform 600ms ease;
+  }
+
+  .zoom-in.is-visible {
+    opacity: 1;
+    transform: none;
+  }
 }
 
 @media (prefers-reduced-motion: reduce) {
@@ -261,7 +294,8 @@
 
   .reveal,
   .reveal-left,
-  .reveal-right {
+  .reveal-right,
+  .zoom-in {
     opacity: 1;
     transform: none;
     transition: none;

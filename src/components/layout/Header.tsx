@@ -3,7 +3,7 @@
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useEffect, useState } from "react";
-import { NAV, PRACTICE } from "@/lib/constants";
+import { NAV, PRACTICE, SITE } from "@/lib/constants";
 
 /**
  * Dark sticky header matching the source site: #1a1a1a bar, uppercase
@@ -22,7 +22,7 @@ export function Header() {
   }, []);
 
   return (
-    <header className="sticky top-0 z-50 bg-nav text-white shadow-lg">
+    <header className="sticky top-0 z-50 border-b border-white/[0.07] bg-nav text-white shadow-[0_3px_25px_0_rgba(255,255,255,0.07)]">
       <div
         className={`mx-auto flex w-full max-w-6xl items-center justify-between px-5 transition-all duration-300 ${
           scrolled ? "py-3" : "py-5"
@@ -30,9 +30,17 @@ export function Header() {
       >
         <Link
           href="/"
-          className="font-display text-lg font-bold uppercase tracking-[-0.02em] text-white"
+          className="flex shrink-0 items-center"
+          aria-label={`${SITE.name} — home`}
         >
-          Shallowford <span className="text-brand">Dental</span> Resource
+          {/* eslint-disable-next-line @next/next/no-img-element */}
+          <img
+            src="/images/logo.svg"
+            alt={PRACTICE.name}
+            width={759}
+            height={161}
+            className="h-8 w-auto md:h-9"
+          />
         </Link>
 
         <nav className="hidden items-center gap-7 lg:flex" aria-label="Main">
